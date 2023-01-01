@@ -27,10 +27,13 @@ function App() {
       removeSpinner();
     } catch (error) {
       if (error.response) {
+        alert('Your request was rejected as a result of our safety system. Your prompt may contain text that is not allowed by our safety system. Please change your prompt.');
         console.log(error.response.status);
         console.log(error.response.data);
+        removeSpinner();
       } else {
         console.log(error.message);
+        removeSpinner();
       }
     }
   }
@@ -46,7 +49,7 @@ function App() {
             </div>
           </div>
           <form id='image-form' onSubmit={generateImage}>
-            <input type='text' placeholder='Give a description of the image. Eg:- A white siamese cat' onChange={(e) => setPrompt(e.target.value)} required/><br />
+            <input type='text' placeholder='A white siamese cat sitting on the beach looking at the sun.' onChange={(e) => setPrompt(e.target.value)} required/><br />
             <button type='submit'>Generate</button>
           </form>
         </div>
